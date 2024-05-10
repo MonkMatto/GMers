@@ -1,0 +1,16 @@
+{
+  "name": "GMer",
+  "created_by": "MonkMatto x PoisonFemme",
+  "external_url": "https://poisonfemme.com",
+  "description": "GM, fellow GMer. Refresh hourly to cycle GMers.",
+  "image": "https://arweave.net/No9Md1u31M-2nSd8qJh0Jbwqn3Z6tt7yysy9aooRttI",
+  "attributes": [
+    { "trait_type": "Preparation", "value": "French Press" },
+    { "trait_type": "Roast", "value": "Light" },
+    { "trait_type": "Add-Ins", "value": "None" },
+    { "trait_type": "Crumbs", "value": "None" },
+    { "trait_type": "Coffee Artist", "value": "PoisonFemme" },
+    { "trait_type": "Contract Artist", "value": "MonkMatto" },
+    { "trait_type": "License", "value": "CC0" }
+  ]
+}
