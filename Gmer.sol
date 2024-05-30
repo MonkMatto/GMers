@@ -65,7 +65,7 @@ contract GMer is ERC1155, Ownable(msg.sender), ERC1155Supply, ERC2981 {
         return uris[(block.timestamp / 3600) % uris.length];
     }
 
-    function setRoyalties(address _fundsReceiver, uint96 royaltyBPS) public onlyOwner {
+    function setFundsReceiver(address _fundsReceiver, uint96 royaltyBPS) public onlyOwner {
         require(royaltyBPS <= 500, "Gmers: Royalty BPS too high");
         require(_fundsReceiver != address(0), "Gmers: Funds receiver cannot be 0x0");
         fundsReceiver = _fundsReceiver;
