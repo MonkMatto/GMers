@@ -6,7 +6,7 @@ const web3 = new Web3(
   "https://base-mainnet.g.alchemy.com/v2/nJjDju3_gVrkM3kbohw2LZld-hf0093B"
 ); // Production API link locked to domain and contracts. :)
 
-const MAIN_ADDRESS = "0x05aabe669560f807bae71139ab5df3d439645025";
+const MAIN_ADDRESS = "0x4A945B5b5C4B03cFFfbfADEF6ffeD3E64a3f0174";
 const mainContractAlchemy = new web3.eth.Contract(MAIN_ABI, MAIN_ADDRESS);
 let web3User = null; // For MetaMask or any Ethereum-compatible wallet
 let mainContractUser = null; // For MetaMask or any Ethereum-compatible wallet
