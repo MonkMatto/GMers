@@ -3,7 +3,8 @@ pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 
-/// This wash quickly hacked together from thirdweb contracts, which are Apache-2.0 licensed
+/// This was quickly hacked together from thirdweb contracts, which are Apache-2.0 licensed
+/// hackjob by Matto ;)
 contract AirdropERC1155 {
 
     /**
