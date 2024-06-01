@@ -17,31 +17,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 });
 
-
 async function updateTotalSupply() {
-    try {
-        const minted = await mainContractAlchemy.methods
-          .totalSupply()
-          .call();
-        const supplyElements = document.querySelectorAll(".total-supply");
-        supplyElements.forEach((element) => {
-          element.innerHTML = minted;
-        });
-        // document.getElementById(`total-supply`).innerHTML = minted;
-    } catch (err) {
-        console.error("Error fetching totalSupply:", err);
-    }  
+  try {
+    const minted = await mainContractAlchemy.methods.totalSupply().call();
+    const supplyElements = document.querySelectorAll(".total-supply");
+    supplyElements.forEach((element) => {
+      element.innerHTML = minted;
+    });
+    // document.getElementById(`total-supply`).innerHTML = minted;
+  } catch (err) {
+    console.error("Error fetching totalSupply:", err);
+  }
 }
 
 async function mint() {
   if (!web3User) {
-    console.error(
-      "User's Web3 not initialized. Please connect a wallet."
-    );
+    console.error("User's Web3 not initialized. Please connect a wallet.");
     return;
   }
+  networkId = await web3User.eth.getChainId();
   if (networkId !== baseId) {
     alert("Please connect to the Base network.");
+    console.log(networkId, baseId);
     return;
   }
   console.log("Connected to network: ", networkId);
@@ -49,12 +46,19 @@ async function mint() {
   amountToMint = document.getElementById("amount-to-mint").value;
   fee = amountToMint * 100000000000000;
   console.log(fee);
-  console.log(currentAccount + " is attempting to mint " + amountToMint + " tokens for a total of " + fee + " wei.");
+  console.log(
+    currentAccount +
+      " is attempting to mint " +
+      amountToMint +
+      " tokens for a total of " +
+      fee +
+      " wei."
+  );
   try {
     await mainContractUser.methods.mint(currentAccount, amountToMint).send(
       {
         from: currentAccount,
-        value: fee
+        value: fee,
       },
       function (err, res) {
         if (err) {
