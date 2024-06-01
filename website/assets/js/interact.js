@@ -40,7 +40,7 @@ async function mint() {
     );
     return;
   }
-  if (networkId !== baseId && networkId !== sepoliaId) {
+  if (networkId !== baseId) {
     alert("Please connect to the Base network.");
     return;
   }
