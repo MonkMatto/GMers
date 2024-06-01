@@ -35,12 +35,10 @@ contract AirdropERC1155 {
      *                   which acts as operator for the tokens.
      *
      *  @param _tokenAddress    The contract address of the tokens to transfer.
-     *  @param _tokenOwner      The owner of the tokens to transfer.
      *  @param _data        List containing recipient, tokenId and amounts to airdrop.
      */
     function airdropERC1155(
         address _tokenAddress,
-        address _tokenOwner,
         AirdropData[] calldata _data
     ) external {
 
@@ -49,7 +47,7 @@ contract AirdropERC1155 {
         for (uint256 i = 0; i < len; ) {
             try
                 IERC1155(_tokenAddress).safeTransferFrom(
-                    _tokenOwner,
+                    msg.sender,
                     _data[i].recipient,
                     _data[i].tokenId,
                     _data[i].amount,
@@ -58,14 +56,14 @@ contract AirdropERC1155 {
             {} catch {
                 // revert if failure is due to unapproved tokens
                 require(
-                    IERC1155(_tokenAddress).balanceOf(_tokenOwner, _data[i].tokenId) >= _data[i].amount &&
-                        IERC1155(_tokenAddress).isApprovedForAll(_tokenOwner, address(this)),
+                    IERC1155(_tokenAddress).balanceOf(msg.sender, _data[i].tokenId) >= _data[i].amount &&
+                        IERC1155(_tokenAddress).isApprovedForAll(msg.sender, address(this)),
                     "Not balance or approved"
                 );
 
                 emit AirdropFailed(
                     _tokenAddress,
-                    _tokenOwner,
+                    msg.sender,
                     _data[i].recipient,
                     _data[i].tokenId,
                     _data[i].amount
